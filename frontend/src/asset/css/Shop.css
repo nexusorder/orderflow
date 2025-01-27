@@ -1,0 +1,220 @@
+.shop-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1;
+    max-width: 440px;
+    width: 100%;
+    background: var(--gray0);
+    position: relative;
+    top: 0;
+    bottom: 0;
+}
+
+.shop-detail .container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    flex: 1 1;
+    position: relative;
+}
+
+.shop-detail .shop-image {
+    max-height: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.shop-detail .shop-image .image {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.shop-detail .wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-detail .shop-header {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 1.5rem 1rem 1rem 1rem;
+    border-bottom: 1px solid var(--gray0);
+}
+
+.shop-detail .shop-header .row {
+    flex: 1 1;
+}
+
+.shop-detail .shop-header .row .name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.shop-detail .shop-header .row.ratings {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.shop-detail .shop-header .row.ratings .char {
+    color: #f6ce2f;
+    font-size: 1rem;
+    margin-right: 0.3rem;
+}
+
+.shop-detail .shop-info {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin-bottom: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    border-bottom: 1px solid var(--gray1);
+}
+
+.shop-detail .shop-info .row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.shop-detail .shop-info .row .label {
+    width: 6rem;
+}
+
+.shop-detail .product-wrapper {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray1);
+}
+
+.shop-detail .product-wrapper .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.shop-detail .product-wrapper .list {
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-detail .product-wrapper .list .item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.shop-detail .product-wrapper .list .item .left {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-detail .product-wrapper .list .item .left .name {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.shop-detail .product-wrapper .list .item .right {
+    flex: 0 1;
+}
+
+.shop-detail .top-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.shop-detail .top-layer .prev {
+    font-size: 1.5rem;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    cursor: pointer;
+    pointer-events: all;
+    color: black;
+    mix-blend-mode: difference;
+}
+
+.shop-detail .cart-wrapper {
+    flex: 0 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.shop-detail .cart-wrapper .cart-button {
+    display: flex;
+    justify-content: center;
+    background-color: var(--orange1);
+    height: 4rem;
+    cursor: pointer;
+}
+
+.shop-detail .cart-wrapper .cart-button .total-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.shop-detail .cart-wrapper .cart-button .middot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff80;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+.shop-detail .cart-wrapper .cart-button .label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.shop-detail .cart-wrapper .cart-button .total-quantity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop-detail .cart-wrapper .cart-button .total-quantity .label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: white;
+    color: var(--orange1);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: bold;
+}

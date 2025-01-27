@@ -1,0 +1,9 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: nexusorder # 이름은 수정하셔도 됩니다.
+  region: ap-northeast-2 # 기본 지역은 서울입니다.
+
+autoModeConfig:
+  enabled: true

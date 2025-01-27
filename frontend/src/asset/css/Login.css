@@ -1,0 +1,101 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    padding: 2rem;
+    height: fit-content;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.login.hide > *:not(.address-wrapper) {
+    display: none;
+}
+
+.login .logo-wrapper {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login .form-wrapper {
+    flex: 0 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login .logo {
+    width: 58%;
+    padding-bottom: 2rem;
+    margin: auto;
+}
+
+.login .seperator {
+    display: flex;
+    width: 100%;
+    margin: 1.33rem 0;
+}
+
+.login .seperator > div {
+    flex: 1 1;
+}
+
+.login .seperator > div > hr {
+    border: 0;
+    border-top: 1px solid var(--gray1);
+}
+
+.login .seperator > span {
+    flex: 3 1;
+    display: flex;
+    justify-content: center;
+    color: var(--gray3);
+    font-size: 1rem;
+}
+
+.login .address-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.login .address-wrapper .header {
+    flex: 0 1 3rem;
+}
+
+.login .address-wrapper .address-layer {
+    flex: 1 1;
+}
+
+.login .address-wrapper .header .prev {
+    padding:1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.login > .header {
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
+
+.login > .header .prev{
+    cursor: pointer;
+    font-size: 1.5rem;
+}
