@@ -1,0 +1,102 @@
+name: Deploy
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          clean: false
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+  
+      - name: Gradle Test
+        run: |
+          orderflow/gradlew test -p orderflow
+      
+      - name: Set up Node.js 23
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          # Settings > Actions > Secrets에 필요한 정보를 등록합니다.
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Build and Push Docker Image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        id: build
+        run: |
+          echo "result=failure" >> "$GITHUB_OUTPUT"
+          cd script
+          ./build.sh
+          ./push.sh "$DOCKER_USERNAME" "$DOCKER_PASSWORD"
+          ./deploy.sh
+          hostname=$(kubectl get ingress -o jsonpath="{.items[*].status.loadBalancer.ingress[*].hostname}")
+          helm_status=$(helm status orderflow)
+          echo "result=success" >> "$GITHUB_OUTPUT"
+          echo "hostname=$hostname" >> "$GITHUB_OUTPUT"
+          {
+            echo "helm_status<<EOF"
+            echo "$helm_status"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Write Deploy Comment
+        uses: actions/github-script@v7.0.1
+        if: always() && github.event.pull_request.number
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # comment 기능을 쓰려면 Settings > Actions > General > Workflow permissions > Read and write permissions > Save를 진행합니다.
+          script: |
+            const { GITHUB_SERVER_URL, GITHUB_REPOSITORY, GITHUB_RUN_ID, COMMENT_SUCCESS} = process.env
+            const actionUrl = `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}`
+            const url = `/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/approvals`
+            let result = "${{ steps.build.outputs.result}}"
+            let comment = ""
+            console.log(result)
+            switch(result){
+              case "success":
+                comment = "Deploy sccuessful"
+                comment += "\n\nHostname: http://${{ steps.build.outputs.hostname }}"
+                comment += "\n\n```yaml\n" + `${{ steps.build.outputs.helm_status }}` + "\n```"
+                break;
+              case "failure":
+                comment = "Deploy failed"
+                break;
+              default:
+                break;
+            }
+            github.rest.issues.createComment({
+              issue_number: "${{ github.event.pull_request.number }}",
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            })
+            if (result === "failure") {
+              throw new Error("Deploy failed")
+            }

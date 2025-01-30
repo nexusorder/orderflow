@@ -1,0 +1,111 @@
+:root {
+  --black: #000;
+  --grayb: #fafafa;
+  --graya: #f4f4f4;
+  --gray0: #eee;
+  --gray1: #ccc;
+  --gray2: #aaa;
+  --gray3: #888;
+  --gray4: #666;
+  --gray5: #444;
+  --gray6: #222;
+  --gray7: #111;
+
+  --red1: #db1a1a;
+
+  --orange1: #da581a;
+
+  --navy5: #1f212d;
+}
+html {
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  background: var(--navy5);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  width: 100%;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+
+.scrollable {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+.text-box  {
+  width: 100%;
+}
+
+.text-box input[type="text"], .text-box input[type="password"], .text-box input[type="email"] {
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.66rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--gray1);
+  border-radius: 0.3rem;
+}
+
+.text-box input[type="text"]:focus, .text-box input[type="password"]:focus, .text-box input[type="email"]:focus {
+  outline: none;
+  border: 1px solid var(--gray2);
+}
+
+.button {
+  width: 100%;
+}
+
+.button input[type="button"] {
+  padding: 0.66rem 0.66rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: var(--gray3);
+  color: white;
+  cursor: pointer;
+  background: var(--orange1);
+  width: 100%;
+  transition: 0.2s;
+}
+
+.button input[type="button"]:disabled {
+  background: var(--gray3);
+  cursor: inherit;
+}
+
+.quiet {
+  color: var(--gray3);
+}

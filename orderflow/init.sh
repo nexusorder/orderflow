@@ -1,0 +1,1 @@
+echo "org.gradle.java.home=$(/usr/libexec/java_home -v 17)" > gradle.properties

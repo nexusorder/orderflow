@@ -1,0 +1,141 @@
+{{- $orderflowLabels := include "orderflow.labels" . -}}
+{{- $orderflowSelectors := include "orderflow.selectors" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Values.app.instance }}'
+  labels:
+    {{- $orderflowLabels | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- $orderflowSelectors | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- $orderflowLabels | nindent 8 }}
+      annotations:
+        app: '{{ .Values.app.application }}'
+    spec:
+      serviceAccountName: dynamodb-sa
+      initContainers:
+        - name: 'init-nginx'
+          image: 'docker.io/alpine:3.21.2'
+          command: ["/bin/sh", "-c", "--"]
+          args: ["mkdir -p /home/logs/nginx"]
+          volumeMounts:
+            - name: logs
+              mountPath: '/home/logs'
+
+      containers:
+        - name: '{{ .Values.app.application }}'
+          image: 'docker.io/{{- .Values.app.image.name -}}:{{- .Values.app.image.tag -}}'
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: AWS_SDK_LOAD_CONFIG
+              value: "true"
+            - name: AWS_WEB_IDENTITY_TOKEN_FILE
+              value: "/var/run/secrets/eks.amazonaws.com/serviceaccount/token"
+            - name: AWS_ROLE_ARN
+              value: "{{ .Values.aws.AWS_ROLE_ARN }}"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ .Values.app.instance }}'
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ .Values.app.instance }}'
+                  key: AWS_SECRET_ACCESS_KEY
+          imagePullPolicy: '{{ .Values.app.image.pullPolicy }}'
+          ports:
+            - protocol: TCP
+              containerPort: 8080
+            - protocol: TCP
+              containerPort: 19010
+              name: metrics
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 19010
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/bash", "-c", "cp -r /web /shared"]
+          volumeMounts:
+            - name: logs
+              mountPath: '/home/logs'
+            - name: deploy
+              mountPath: '/shared'
+          resources:
+            limits:
+              cpu: 4
+              ephemeral-storage: 4Gi
+              memory: 4Gi
+            requests:
+              cpu: 200m
+              ephemeral-storage: 1Gi
+              memory: 2Gi
+        
+        # Container nginx
+        - name: 'nginx'
+          image: 'docker.io/nginx:1.27.3-perl'
+          command: ["nginx", "-c", "{{ .Values.nginx.configPath }}/nginx.conf", "-g", "daemon off;"]
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: global-config-files
+              mountPath: '{{ .Values.nginx.configPath }}'
+            - name: logs
+              mountPath: '/home/logs'
+            - name: deploy
+              mountPath: '/home/deploy'
+          resources:
+            limits:
+              cpu: 4
+              ephemeral-storage: 4Gi
+              memory: 4Gi
+            requests:
+              cpu: 200m
+              ephemeral-storage: 1Gi
+              memory: 2Gi
+        
+        # prometheus-exporter
+        # - name: nginx-prom-exporter
+        #   image: 'docker.io/nginx/nginx-prometheus-exporter:1.4'
+        #   args:
+        #     - -nginx.scrape-uri=http://localhost:80/basic_status
+        #   ports:
+        #     - containerPort: 9113
+        #       name: nginx-metrics
+        #   resources:
+        #     requests:
+        #       memory: "64Mi"
+        #       cpu: "10m"
+        #     limits:
+        #       memory: "256Mi"
+        #       cpu: "500m"
+
+      # Volumes
+      volumes:
+        - name: global-config-files
+          configMap:
+            name: '{{ .Values.app.instance }}-{{ .Values.app.installation }}-configs'
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+              - key: mime.types
+                path: mime.types
+        - name: logs
+          emptyDir: {}
+        - name: deploy
+          emptyDir: {}

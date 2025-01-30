@@ -1,0 +1,69 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1;
+    max-width: 440px;
+    width: 100%;
+    background: white;
+    position: relative;
+    top: 0;
+    bottom: 0;
+}
+
+.profile .container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile .header {
+    flex: 0 1;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.profile .about {
+    flex: 0 1;
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.profile .about .left {
+    flex: 0 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile .about .left .icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0.5rem;
+    border: 1px solid var(--gray2);
+    color: var(--gray2);
+}
+
+.profile .about .right {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+.profile .logout-wrapper {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

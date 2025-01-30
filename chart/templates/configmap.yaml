@@ -1,0 +1,13 @@
+{{- $orderflowLabels := include "orderflow.labels" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ .Values.app.instance }}-{{ .Values.app.installation }}-configs'
+  labels:
+    {{- $orderflowLabels | nindent 4 }}
+data:
+{{- $root := . -}}
+{{- range $path, $bytes := .Files.Glob (printf "configs/%s/*" (required "profile must be set" .Values.profile)) -}}
+{{- base $path | nindent 2 }}: |-
+  {{- required (printf "config file does not exists (%s)" $path) ($root.Files.Get $path) | nindent 4 }}
+{{- end -}}

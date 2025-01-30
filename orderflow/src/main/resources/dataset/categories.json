@@ -1,0 +1,112 @@
+[
+  {
+    "name": "구이",
+    "imageUrl": "/asset/image/products/samgyeopsal.jpg",
+    "enabled": true,
+    "order": 5,
+    "key": "barbecue",
+    "version": 0,
+    "id": "0eae33a6e8674fb88532f841dd4472e9",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "중식",
+    "imageUrl": "/asset/image/products/jajangmyeon.jpg",
+    "enabled": true,
+    "order": 7,
+    "key": "chinese",
+    "version": 0,
+    "id": "37a9b0a73ed44493b47279cadea71324",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "치킨",
+    "imageUrl": "/asset/image/products/fried-chicken.jpg",
+    "enabled": true,
+    "order": 1,
+    "key": "chicken",
+    "version": 0,
+    "id": "d757a800cdbc413eb7092cc45599bf97",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "피자",
+    "imageUrl": "/asset/image/products/pizza.jpg",
+    "enabled": true,
+    "order": 6,
+    "key": "pizza",
+    "version": 0,
+    "id": "e8051450d7da4781891b47a84b1c568a",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "커피/차",
+    "imageUrl": "/asset/image/products/coffee.jpg",
+    "enabled": true,
+    "order": 9,
+    "key": "cafe",
+    "version": 0,
+    "id": "34f59570d2ca434eab316a8c0c389e1d",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "분식",
+    "imageUrl": "/asset/image/products/tteokbokki.jpg",
+    "enabled": true,
+    "order": 2,
+    "key": "snack",
+    "version": 0,
+    "id": "b68f7ac590d74971a55084e89f14dbbf",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "족발/보쌈",
+    "imageUrl": "/asset/image/products/jokbal.jpg",
+    "enabled": true,
+    "order": 4,
+    "key": "jokbal",
+    "version": 0,
+    "id": "e125534accf649b1abfa7754f4c22c37",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "초밥",
+    "imageUrl": "/asset/image/products/sushi.jpg",
+    "enabled": true,
+    "order": 8,
+    "key": "sushi",
+    "version": 0,
+    "id": "517f1fe3c9304d85ad7a77120620932e",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "한식",
+    "imageUrl": "/asset/image/products/kimchi-jjigae.jpg",
+    "enabled": true,
+    "order": 0,
+    "key": "korean",
+    "version": 0,
+    "id": "9e18f15f5669467facfcba6f04859d58",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  },
+  {
+    "name": "돈까스",
+    "imageUrl": "/asset/image/products/pork-cutlet.jpg",
+    "enabled": true,
+    "order": 3,
+    "key": "cutlet",
+    "version": 0,
+    "id": "09367a36ea524c6ea744df5693867e3c",
+    "createdAt": "2025-01-22T00:46:47",
+    "updatedAt": "2025-01-22T00:46:47"
+  }
+]

@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: orderflow
+  profiles:
+    active: default
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  security:
+    user:
+      name: user
+      password: 6519ce2e-51f1-496b-ae9e-d3fc6b092a6f
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 19010
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health, metrics, env
+
+aws:
+  dynamodb:
+    endpoint: https://dynamodb.ap-northeast-2.amazonaws.com
+  region: ap-northeast-2
+  cloudwatch:
+    logs:
+      group-name: nexusorder
+      stream-name: orderflow
+    metrics:
+      namespace: nexusorder/orderflow
+      step: 1
+
+orderflow:
+  encryption:
+    key: CAi3lVHqlcCqErfL0qSBkg==
+    iv: rcxR5vN4NBQqFSYcAQZ8vQ==
+
+springdoc:
+  swagger-ui:
+    path: /docs
+
+logging:
+  root:
+    level: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+aws:
+  dynamodb:
+    endpoint: https://localhost:8000
+  region: ap-northeast-2
+  cloudwatch:
+    logs:
+      group-name: nexusorder
+      stream-name: orderflow
+    metrics:
+      namespace: nexusorder/orderflow
+      step: 1

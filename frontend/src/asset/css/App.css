@@ -1,0 +1,146 @@
+:root {
+    --background: #282c34;
+    --lighter: #383c48;
+    --lightest: #484c5c;
+    --lightester: #686f81;
+    --darker: #181c21;
+}
+html, body {
+    position: relative;
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+#root {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background-color: var(--background);
+    color: white;
+
+    overflow: hidden;
+
+    padding: 3rem 3rem 0 3rem;
+}
+
+.app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollable {
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scrollable::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+}
+
+.center {
+    display: flex;
+    flex: 1 1;
+}
+
+.service-wrapper {
+    margin-right: 3rem;
+}
+
+.service-name {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.service-tokens {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.token {
+    display: flex;
+}
+
+.token > span {
+    flex: 1 1;
+}
+
+.board {
+    display: flex;
+    flex: 1 1;
+    max-width: 1024px;
+}
+
+ul {
+    margin: 0;
+    list-style-type: none;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+
+.board .group {
+    flex: 1 1;
+    width: 100%;
+    padding: 0 0 3rem 0;
+    min-width: 480px;
+}
+
+.item {
+    display: flex;
+    flex: 1 1;
+    font-size: 1rem;
+    background-color: var(--lighter);
+    color: white;
+    border: 1px solid var(--lightest);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 0 0 1rem 0;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+}
+
+.item .left {
+    flex: 6 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item .right {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item .title {
+    color: white;
+    margin-bottom: 0.48rem;
+}
+
+.item .gdid {
+    color: gray;
+}
+
+.item .frequency {
+    margin-bottom: 0.12rem;
+}
+
+.item .type {
+    color: gray;
+}
+
+.line {
+    margin-top: 0.24rem;
+    border-bottom: 3px solid var(--lightester); 
+}
+
