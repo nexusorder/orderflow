@@ -1,0 +1,19 @@
+[
+  {
+    "login": "test",
+    "password": "$2a$10$qct8bhb6VeZuQ.s4ZrJAeeKwYP0A24ILsFYr/SaF.I33rhWAdeOYW",
+    "name": "sendy",
+    "nickname": "샌디",
+    "email": "14SpjCMGuSRFK2+SbRPoduDSsRLQGttHk0u7QmTUIso=",
+    "phone": "HHJoBlA24ILurhziBtwMzQ==",
+    "address": "zday7nJ1kT3/RaAmbEpNs3Mc3IvohQiy7lyLZgv2l6TIfyIZuT2JdaLe1iE7pVg4vMviEkQeki85mbJHB6OmPQ==",
+    "latitude": "LHDnZp9D4Jsk0LmrY1bW+w==",
+    "longitude": "UbCOAklkNhIdwHZdrff/aA==",
+    "seller": false,
+    "shopId": "",
+    "id": "1db166ae301b4d40bf2bb86bdeb7af90",
+    "version": 0,
+    "createdAt": "2025-01-22T00:58:08",
+    "updatedAt": "2025-01-22T00:58:08"
+  }
+]

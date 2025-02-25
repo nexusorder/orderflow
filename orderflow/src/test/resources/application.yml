@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: orderflow
+  profiles:
+    active: test
+
+orderflow:
+  encryption:
+    key: zAaFLRw4QRcjipm2BiER5Q==
+    iv: IT89GZchTRf74vImcLae8A==
+
+logging:
+  root:
+    level: INFO

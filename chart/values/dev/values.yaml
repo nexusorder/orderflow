@@ -1,0 +1,25 @@
+profile: dev
+
+app:
+  image:
+    name: FIXME/orderflow # FIXME: Change this to your Docker image name
+    tag: 0.0.1-amd64
+    pullPolicy: Always
+  application: orderflow
+  instance: orderflow
+  version: develop
+
+replicas: 1
+minReplicas: 1
+maxReplicas: 1
+
+service:
+  type: LoadBalancer
+
+nginx:
+  configPath: /home/apps/nginx/conf/custom
+
+aws:
+  AWS_ROLE_ARN: "arn:aws:iam::{USERID}:user/user"
+  AWS_ACCESS_KEY_ID: FIXME
+  AWS_SECRET_ACCESS_KEY: FIXME
